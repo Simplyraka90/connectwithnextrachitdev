@@ -1,5 +1,4 @@
 // app/page.tsx
-
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import About from "./components/About";
@@ -10,8 +9,7 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-white">
-      
+    <main className="overflow-hidden bg-white w-full min-h-screen">
       {/* Navbar */}
       <Navbar />
 
@@ -32,7 +30,6 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
-      
     </main>
   );
 }

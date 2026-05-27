@@ -25,48 +25,70 @@ const skills: SkillItem[] = [
 ];
 
 export default function Skills() {
-  // Fix: Variants define ki taaki animate prop conflict na kare
   const floatVariants: Variants = {
     animate: {
-      y: [0, -20, 0],
-      rotate: [0, 5, -5, 0],
+      y: [0, -15, 0],
+      rotate: [0, 3, -3, 0],
       transition: { duration: 8, repeat: Infinity, ease: "easeInOut" }
     }
   };
 
   return (
-    <section id="skills" className="bg-[#FAFAFC] py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <section id="skills" className="bg-[#FAFAFC] py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
       
       {/* Background Decor */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <motion.div variants={floatVariants} animate="animate" className="absolute top-[10%] left-[5%] text-zinc-300/50 font-mono text-2xl hidden md:block">{"<code />"}</motion.div>
-        <motion.div variants={floatVariants} animate="animate" className="absolute bottom-[15%] right-[5%] text-zinc-300/50 font-mono text-4xl hidden lg:block">{"{ design }"}</motion.div>
-        <motion.div variants={floatVariants} animate="animate" className="absolute top-[20%] right-[10%] text-zinc-300/50 font-mono text-xl hidden sm:block">{"import { skills }"}</motion.div>
+        <motion.div variants={floatVariants} animate="animate" className="absolute top-[8%] left-[4%] text-zinc-300/40 font-mono text-xl md:text-2xl hidden md:block">{"<code />"}</motion.div>
+        <motion.div variants={floatVariants} animate="animate" className="absolute bottom-[12%] right-[4%] text-zinc-300/40 font-mono text-3xl md:text-4xl hidden lg:block">{"{ design }"}</motion.div>
+        <motion.div variants={floatVariants} animate="animate" className="absolute top-[18%] right-[8%] text-zinc-300/40 font-mono text-lg md:text-xl hidden sm:block">{"import { skills }"}</motion.div>
         
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.3]" />
+        {/* Clean Mesh Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:3rem_3rem] sm:bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-[0.25]" />
       </div>
 
-      <div className="mx-auto max-w-7xl relative z-10">
-        <div className="mb-16 flex items-center gap-3">
+      <div className="mx-auto max-w-7xl relative z-10 w-full">
+        
+        {/* Section Heading Tag */}
+        <div className="mb-10 sm:mb-14 flex items-center gap-2.5 px-1 justify-start">
           <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-          <p className="text-xs font-bold uppercase tracking-[0.25em] text-zinc-800">My Tech Stack</p>
+          <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-zinc-400">
+            My Tech Stack
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6">
+        {/* Dynamic Fluid Grid Matrix */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6 w-full">
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.04 }}
-              whileHover={{ y: -10, scale: 1.05 }}
-              className={`flex flex-col items-center justify-center bg-white border border-zinc-200/60 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer ${skill.colorClass}`}
+              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ 
+                duration: 0.5,
+                delay: index * 0.03,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              whileHover={{ 
+                y: -6, 
+                scale: 1.02,
+                transition: { duration: 0.2, ease: "easeOut" }
+              }}
+              whileTap={{ scale: 0.98 }}
+              className={`flex flex-col items-center justify-center bg-white border border-zinc-200/50 rounded-2xl p-4 sm:p-5 md:p-6 shadow-[0_2px_8px_-3px_rgba(0,0,0,0.02)] transition-all duration-300 cursor-pointer ${skill.colorClass}`}
             >
-              <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center mb-3 sm:mb-4">
-                <img src={skill.logo} alt={skill.name} className="h-full w-full object-contain" />
+              {/* Logo Wrapper Container */}
+              <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center mb-3 sm:mb-4 aspect-square">
+                <img 
+                  src={skill.logo} 
+                  alt={`${skill.name} Icon`} 
+                  loading="lazy"
+                  className="h-full w-full object-contain transition-transform duration-300 select-none group-hover:scale-105" 
+                />
               </div>
-              <span className="text-[10px] sm:text-xs font-bold text-zinc-700 tracking-tight text-center">
+              
+              {/* Skill Title Text */}
+              <span className="text-[10px] sm:text-xs font-bold text-zinc-700 tracking-tight text-center leading-none">
                 {skill.name}
               </span>
             </motion.div>
