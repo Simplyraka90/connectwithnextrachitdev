@@ -13,7 +13,14 @@ const projects = [
   { title: "Noida Import", desc: "Logistics & import portal.", link: "https://noidaimportdemo.vercel.app/", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
   { title: "Connect Rachiit", desc: "Personal portfolio.", link: "https://connectwithrachiit.vercel.app/", img: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?q=80&w=1200&auto=format&fit=crop", span: "md:col-span-2 md:row-span-1" },
   { title: "Skyview Hotel", desc: "Luxury booking system.", link: "https://skyviecoin.netlify.app/", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
-  { title: "Ryaw Travel", desc: "Travel exploration.", link: "https://ryawtravelwebcom.netlify.app/", img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1200&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" }
+  { title: "Skyview Hotel", desc: "Luxury booking system.", link: "https://skyviecoin.netlify.app/", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1200&auto=format&fit=crop", span: "md:col-span-1 md:row-span-1" },
+  {
+    title: "SkillSwap",
+    desc: "Skill sharing platform.",
+    link: "https://swapwayskillcom.vercel.app/",
+    img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+    span: "md:col-span-1 md:row-span-1"
+  }
 ];
 
 function ProjectCard({ project, index }: { project: any; index: number }) {
