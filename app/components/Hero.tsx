@@ -128,7 +128,7 @@ export default function Hero() {
               <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
-              href="/Cv Rachitt.pdf" 
+              href="/public/CVRachit.pdf" 
               download="Rachit_Resume.pdf"
               className="group flex items-center justify-center gap-2 rounded-full border border-zinc-200/80 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold text-zinc-800 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:border-sky-400 hover:bg-zinc-50 w-full sm:w-auto"
             >/
