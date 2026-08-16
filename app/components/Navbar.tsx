@@ -133,10 +133,10 @@ export default function Navbar() {
               y: "-100vh",
               transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.1 } 
             }}
-            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-zinc-950 text-white select-none px-4"
+            className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050B14] text-white select-none px-4"
           >
             {/* Ambient Radial Glow */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(14,165,233,0.08)_0%,transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(56,189,248,0.1)_0%,transparent_60%)]" />
 
             <div className="relative flex flex-col items-center w-full max-w-2xl mx-auto">
               
@@ -148,7 +148,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-zinc-500 mb-4 font-bold text-center bg-zinc-900/50 px-4 py-1.5 rounded-full border border-zinc-800/60"
+                className="text-[10px] sm:text-xs uppercase tracking-[0.3em] sm:tracking-[0.4em] text-sky-400 mb-4 font-bold text-center bg-sky-950/40 px-4 py-1.5 rounded-full border border-sky-500/30"
               >
                 React & Next.js Developer
               </motion.p>
@@ -161,7 +161,7 @@ export default function Navbar() {
                 className="flex flex-wrap justify-center gap-x-2 sm:gap-x-3 text-2xl sm:text-4xl md:text-6xl font-black tracking-tighter text-center px-2"
               >
                 {/* "Hi, I’m" Block */}
-                <span className="flex overflow-hidden py-1 sm:py-2 text-zinc-400">
+                <span className="flex overflow-hidden py-1 sm:py-2 text-zinc-300">
                   {Array.from("Hi, I’m").map((char, index) => (
                     <motion.span 
                       key={`greet-${index}`} 
@@ -174,7 +174,7 @@ export default function Navbar() {
                 </span>
                 
                 {/* "Rachit" Block */}
-                <span className="flex overflow-hidden py-1 sm:py-2 bg-gradient-to-r from-zinc-100 via-zinc-200 to-sky-400 bg-clip-text text-transparent">
+                <span className="flex overflow-hidden py-1 sm:py-2 bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent">
                   {Array.from("Rachit").map((char, index) => (
                     <motion.span 
                       key={`name-${index}`} 
@@ -217,7 +217,7 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 z-[50] w-full transition-all duration-500 ${
           scrolled 
-            ? "py-3 bg-white/80 backdrop-blur-2xl border-b border-zinc-200/60 shadow-[0_4px_20px_rgba(0,0,0,0.03)]" 
+            ? "py-3 bg-[#050B14]/90 backdrop-blur-2xl border-b border-sky-500/20 shadow-[0_4px_20px_rgba(0,0,0,0.5)]" 
             : "py-4 sm:py-6 bg-transparent"
         }`}
       >
@@ -228,22 +228,22 @@ export default function Navbar() {
             <motion.div whileHover={{ rotate: -10 }} transition={{ type: "spring", stiffness: 300 }}>
               <img src="/weblogg.png" alt="Logo" className="h-8 sm:h-10 md:h-12 w-auto object-contain" />
             </motion.div>
-            <span className="text-lg sm:text-xl font-black tracking-tighter text-zinc-950">RACHIT</span>
+            <span className="text-lg sm:text-xl font-black tracking-tighter text-white">RACHIT</span>
           </a>
 
           {/* DESKTOP NAV */}
-          <div className="hidden md:flex items-center bg-zinc-100/50 p-1.5 rounded-full border border-zinc-200/50 backdrop-blur-md">
+          <div className="hidden md:flex items-center bg-zinc-900/60 p-1.5 rounded-full border border-sky-500/20 backdrop-blur-md">
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setActiveSection(link.name)}
-                className="relative px-5 py-2 text-sm font-medium text-zinc-600 transition-all duration-300 hover:text-black rounded-full"
+                className="relative px-5 py-2 text-sm font-medium text-zinc-300 transition-all duration-300 hover:text-white rounded-full"
               >
                 {activeSection === link.name && (
                   <motion.div
                     layoutId="nav-pill"
-                    className="absolute inset-0 bg-white rounded-full shadow-sm"
+                    className="absolute inset-0 bg-blue-600 rounded-full shadow-lg shadow-blue-600/30"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -257,7 +257,7 @@ export default function Navbar() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="hidden sm:flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-2.5 sm:px-6 sm:py-3 text-sm font-semibold text-white hover:bg-sky-600 transition-all duration-300 shadow-xl shadow-sky-500/10"
+            className="hidden sm:flex items-center gap-2 rounded-full bg-blue-600 px-5 py-2.5 sm:px-6 sm:py-3 text-sm font-semibold text-white hover:bg-blue-500 transition-all duration-300 shadow-xl shadow-blue-600/30"
           >
             Let's Talk <ArrowUpRight className="h-4 w-4" />
           </motion.a>
@@ -265,10 +265,10 @@ export default function Navbar() {
           {/* MOBILE MENU TRIGGER */}
           <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="md:hidden p-2 text-zinc-950 hover:bg-zinc-100/80 rounded-full transition-colors"
+            className="md:hidden p-2 text-white hover:bg-zinc-900/80 rounded-full transition-colors border border-sky-500/30"
             aria-label="Toggle Menu"
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            {isOpen ? <X size={22} className="text-sky-400" /> : <Menu size={22} className="text-sky-400" />}
           </button>
         </div>
 
@@ -280,9 +280,9 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden bg-white/95 backdrop-blur-xl border-b border-zinc-200 overflow-hidden absolute top-full left-0 w-full shadow-lg"
+              className="md:hidden bg-[#050B14]/95 backdrop-blur-2xl border-b border-sky-500/20 overflow-hidden absolute top-full left-0 w-full shadow-2xl"
             >
-              <div className="flex flex-col p-5 gap-4">
+              <div className="flex flex-col p-5 gap-3">
                 {navLinks.map((link) => (
                   <a 
                     key={link.name} 
@@ -291,10 +291,10 @@ export default function Navbar() {
                       setActiveSection(link.name);
                       setIsOpen(false);
                     }} 
-                    className={`text-base font-semibold py-2 px-3 rounded-xl transition-all ${
+                    className={`text-base font-semibold py-2.5 px-4 rounded-xl transition-all ${
                       activeSection === link.name 
-                        ? "bg-zinc-950 text-white" 
-                        : "text-zinc-700 hover:bg-zinc-100"
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30" 
+                        : "text-zinc-300 hover:bg-zinc-900/80 hover:text-white"
                     }`}
                   >
                     {link.name}
@@ -305,7 +305,7 @@ export default function Navbar() {
                 <a
                   href="#contact"
                   onClick={() => setIsOpen(false)}
-                  className="flex sm:hidden items-center justify-center gap-2 rounded-xl bg-sky-500 px-4 py-3 text-sm font-bold text-white shadow-md mt-2"
+                  className="flex sm:hidden items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/30 mt-2"
                 >
                   Let's Talk <ArrowUpRight className="h-4 w-4" />
                 </a>
