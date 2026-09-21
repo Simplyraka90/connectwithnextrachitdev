@@ -56,11 +56,68 @@ export default function About() {
   return (
     <section 
       id="about" 
-      className="relative flex min-h-screen w-full items-center justify-center bg-[#FAFAFC] px-4 py-16 sm:px-6 md:px-8 lg:px-12 overflow-hidden select-none"
+      className="relative flex min-h-screen w-full items-center justify-center bg-[#F4F5F8] text-zinc-900 px-4 py-16 sm:px-6 md:px-8 lg:px-12 overflow-hidden select-none"
     >
-      {/* Background Glows */}
-      <div className="absolute top-1/3 left-[-10%] h-[250px] w-[250px] sm:h-[400px] sm:w-[400px] rounded-full blur-[80px] sm:blur-[120px] bg-sky-400/10 pointer-events-none" />
-      <div className="absolute bottom-1/4 right-[-10%] h-[250px] w-[250px] sm:h-[400px] sm:w-[400px] rounded-full blur-[80px] sm:blur-[120px] bg-indigo-400/10 pointer-events-none" />
+      {/* Background Soft Glows */}
+      <div className="absolute top-1/4 left-[-5%] h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full blur-[100px] sm:blur-[140px] bg-sky-400/20 pointer-events-none" />
+      <div className="absolute bottom-1/3 right-[-5%] h-[300px] w-[300px] sm:h-[500px] sm:w-[500px] rounded-full blur-[100px] sm:blur-[140px] bg-indigo-400/15 pointer-events-none" />
+
+      {/* Moving SVG Waves Background */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-0">
+        <motion.svg 
+          className="relative block w-full h-[100px] sm:h-[160px]"
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 1200 120" 
+          preserveAspectRatio="none"
+        >
+          {/* Back Wave */}
+          <motion.path 
+            d="M0,30 C150,90 350,-20 500,40 C650,100 900,10 1200,40 L1200,120 L0,120 Z" 
+            fill="url(#wave-gradient-1)"
+            opacity="0.4"
+            animate={{
+              d: [
+                "M0,30 C150,90 350,-20 500,40 C650,100 900,10 1200,40 L1200,120 L0,120 Z",
+                "M0,50 C200,10 400,90 600,30 C800,-30 1000,80 1200,60 L1200,120 L0,120 Z",
+                "M0,30 C150,90 350,-20 500,40 C650,100 900,10 1200,40 L1200,120 L0,120 Z"
+              ]
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          {/* Front Wave */}
+          <motion.path 
+            d="M0,60 C200,20 400,100 600,50 C800,0 1000,90 1200,30 L1200,120 L0,120 Z" 
+            fill="url(#wave-gradient-2)"
+            opacity="0.6"
+            animate={{
+              d: [
+                "M0,60 C200,20 400,100 600,50 C800,0 1000,90 1200,30 L1200,120 L0,120 Z",
+                "M0,20 C150,80 350,10 500,60 C650,110 900,20 1200,50 L1200,120 L0,120 Z",
+                "M0,60 C200,20 400,100 600,50 C800,0 1000,90 1200,30 L1200,120 L0,120 Z"
+              ]
+            }}
+            transition={{
+              duration: 14,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <defs>
+            <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#38bdf8" />
+              <stop offset="100%" stopColor="#818cf8" />
+            </linearGradient>
+            <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#0ea5e9" />
+              <stop offset="100%" stopColor="#6366f1" />
+            </linearGradient>
+          </defs>
+        </motion.svg>
+      </div>
 
       <div className="relative mx-auto max-w-7xl w-full z-10 flex flex-col justify-center">
         
@@ -81,8 +138,8 @@ export default function About() {
               
               {/* Small Top Tag */}
               <motion.div variants={elementVariants}>
-                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
-                  ABOUT ME
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/80 border border-sky-200 text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-sky-600 shadow-sm backdrop-blur-md">
+                  <Sparkles className="w-3 h-3 text-sky-500" /> ABOUT ME
                 </span>
               </motion.div>
               
@@ -103,7 +160,7 @@ export default function About() {
                 </span>
                 
                 <span className="flex flex-wrap overflow-hidden py-1 items-center">
-                  <span className="bg-gradient-to-r from-blue-600 to-sky-500 bg-clip-text text-transparent font-black mr-2 sm:mr-3">
+                  <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 bg-clip-text text-transparent font-black mr-2 sm:mr-3">
                     {Array.from("React & Next.js").map((char, i) => (
                       <motion.span key={i} variants={headingLetter} className="inline-block">
                         {char === " " ? "\u00A0" : char}
@@ -137,7 +194,7 @@ export default function About() {
                 whileTap={{ scale: 0.98 }}
                 href="/CVRachit.pdf" 
                 download="/Rachit udaan.pdf"
-                className="group flex items-center justify-center gap-2 rounded-full border border-zinc-200/80 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold text-zinc-800 shadow-sm transition-all duration-300 hover:border-sky-400 hover:bg-zinc-50 w-full sm:w-auto"
+                className="group relative flex items-center justify-center gap-2 rounded-full border border-sky-200 bg-white px-6 py-3.5 sm:px-8 sm:py-4 text-xs sm:text-sm font-bold text-zinc-800 shadow-md shadow-sky-900/5 transition-all duration-300 hover:border-sky-400 hover:bg-sky-50/50 w-full sm:w-auto"
               >
                 Download CV 
                 <motion.div className="inline-block" variants={{
@@ -154,14 +211,14 @@ export default function About() {
               variants={elementVariants}
               className="lg:col-span-5 relative flex justify-center items-center w-full mt-4 lg:mt-0"
             >
-              <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-[32px] sm:rounded-[40px] border border-sky-400/20 bg-white/60 p-3 sm:p-4 shadow-2xl shadow-sky-900/5 backdrop-blur-xl flex items-center justify-center">
+              <div className="relative w-full max-w-sm sm:max-w-md aspect-[4/5] rounded-[32px] sm:rounded-[40px] border border-sky-200/80 bg-white/80 p-3 sm:p-4 shadow-xl shadow-sky-900/5 backdrop-blur-xl flex items-center justify-center">
                 
                 {/* Floating Code Icon Badge */}
                 <motion.div 
                   initial={{ y: 0 }}
                   animate={{ y: [-6, 6, -6] }}
                   transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                  className="absolute -left-3 sm:-left-6 top-1/4 z-20 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-white shadow-xl border border-zinc-100 text-blue-600"
+                  className="absolute -left-3 sm:-left-6 top-1/4 z-20 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-white shadow-lg border border-sky-100 text-blue-600"
                 >
                   <Code2 className="h-5 w-5 sm:h-7 sm:w-7" />
                 </motion.div>
@@ -173,7 +230,7 @@ export default function About() {
                     alt="Rachit" 
                     className="h-full w-full object-cover object-center select-none"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none" />
                 </div>
               </div>
             </motion.div>
@@ -186,12 +243,12 @@ export default function About() {
             {/* Card 1 - Experience */}
             <motion.div 
               variants={cardVariants} 
-              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05)" }} 
-              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-zinc-100 shadow-sm transition-all duration-300 hover:border-sky-200 group cursor-default"
+              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 15px 30px -10px rgba(14, 165, 233, 0.12)" }} 
+              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white/90 border border-zinc-200/80 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-sky-300 group cursor-default"
             >
               <motion.div 
                 whileHover={{ rotate: -10, scale: 1.1 }}
-                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-sky-50/80 flex items-center justify-center text-blue-600 mb-3 sm:mb-4 border border-sky-100"
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-sky-50 flex items-center justify-center text-blue-600 mb-3 sm:mb-4 border border-sky-100"
               >
                 <Briefcase className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
               </motion.div>
@@ -202,12 +259,12 @@ export default function About() {
             {/* Card 2 - Projects Completed */}
             <motion.div 
               variants={cardVariants} 
-              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05)" }} 
-              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-zinc-100 shadow-sm transition-all duration-300 hover:border-indigo-200 group cursor-default"
+              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 15px 30px -10px rgba(99, 102, 241, 0.12)" }} 
+              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white/90 border border-zinc-200/80 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-indigo-300 group cursor-default"
             >
               <motion.div 
                 whileHover={{ rotate: 10, scale: 1.1 }}
-                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-indigo-50/80 flex items-center justify-center text-indigo-600 mb-3 sm:mb-4 border border-indigo-100"
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 mb-3 sm:mb-4 border border-indigo-100"
               >
                 <Code2 className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
               </motion.div>
@@ -218,12 +275,12 @@ export default function About() {
             {/* Card 3 - React + Next.js Specialist */}
             <motion.div 
               variants={cardVariants} 
-              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05)" }} 
-              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-zinc-100 shadow-sm transition-all duration-300 hover:border-blue-200 group cursor-default"
+              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 15px 30px -10px rgba(59, 130, 246, 0.12)" }} 
+              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white/90 border border-zinc-200/80 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-blue-300 group cursor-default"
             >
               <motion.div 
                 whileHover={{ scale: 1.15 }}
-                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-blue-50/80 flex items-center justify-center text-blue-500 mb-3 sm:mb-4 border border-blue-100"
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-blue-50 flex items-center justify-center text-blue-500 mb-3 sm:mb-4 border border-blue-100"
               >
                 <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
               </motion.div>
@@ -234,12 +291,12 @@ export default function About() {
             {/* Card 4 - Certifications Earned */}
             <motion.div 
               variants={cardVariants} 
-              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.05)" }} 
-              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-zinc-100 shadow-sm transition-all duration-300 hover:border-amber-200 group cursor-default"
+              whileHover={{ y: -6, scale: 1.02, boxShadow: "0 15px 30px -10px rgba(245, 158, 11, 0.12)" }} 
+              className="flex flex-col items-center justify-center text-center p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl bg-white/90 border border-zinc-200/80 shadow-sm backdrop-blur-md transition-all duration-300 hover:border-amber-300 group cursor-default"
             >
               <motion.div 
                 whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
-                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-amber-50/80 flex items-center justify-center text-amber-600 mb-3 sm:mb-4 border border-amber-100"
+                className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-xl sm:rounded-2xl bg-amber-50 flex items-center justify-center text-amber-600 mb-3 sm:mb-4 border border-amber-100"
               >
                 <Trophy className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
               </motion.div>
