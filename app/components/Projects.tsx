@@ -6,6 +6,14 @@ import { ExternalLink, Sparkles, Layers, ArrowUpRight } from "lucide-react";
 
 // नए और डायनेमिक साइज़ के साथ प्रोजेक्ट्स लिस्ट
 const projects = [
+  {
+  title: "Radhe Properties",
+  desc: "Modern real estate website with a clean interface and smooth user experience.",
+  link: "https://radhepropeties.vercel.app/",
+  img: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop",
+  tag: "Real Estate",
+  span: "lg:col-span-4 lg:row-span-2"
+},
   { 
     title: "E-Commerce Info", 
     desc: "Fast & responsive e-commerce platform built with modern performance standards.", 
@@ -30,14 +38,14 @@ const projects = [
     tag: "Dashboard",
     span: "lg:col-span-4 lg:row-span-1" 
   },
-  { 
-    title: "Wardador PP", 
-    desc: "Optimized web application with advanced user experience.", 
-    link: "https://wardadorpp.vercel.app/", 
-    img: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1200&auto=format&fit=crop", 
-    tag: "Web App",
-    span: "lg:col-span-4 lg:row-span-2" 
-  },
+  {
+  title: "The Cherry Cafe",
+  desc: "Modern and responsive café website with an engaging user experience.",
+  link: "https://the-cherry-cafe.vercel.app/",
+  img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1200&auto=format&fit=crop",
+  tag: "Cafe Website",
+  span: "lg:col-span-4 lg:row-span-2"
+},
   { 
     title: "Qorva Tech", 
     desc: "Tech service showcase portal.", 
@@ -62,7 +70,16 @@ const projects = [
     tag: "Portfolio",
     span: "lg:col-span-8 lg:row-span-1" 
   },
-  { 
+  {
+  title: "Accdemix Web",
+  desc: "Modern and responsive web application with a clean design and smooth user experience.",
+  link: "https://accdemixweb.vercel.app/",
+  img: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?q=80&w=1200&auto=format&fit=crop",
+  tag: "Web App",
+  span: "lg:col-span-4 lg:row-span-2"
+},
+
+{ 
     title: "Skyview Hotel", 
     desc: "Luxury room booking and reservation system.", 
     link: "https://skyviecoin.netlify.app/", 
