@@ -1,151 +1,212 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 interface SkillItem {
   name: string;
   logo: string;
-  colorClass: string;
 }
 
-interface SkillCategory {
-  title: string;
-  skills: SkillItem[];
-}
+export default function SkillsSection() {
+  const [isHovered, setIsHovered] = useState(false);
 
-const skillCategories: SkillCategory[] = [
-  {
-    title: "CORE FRONTEND",
-    skills: [
-      { name: "React.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", colorClass: "hover:border-sky-400/40 hover:shadow-[0_8px_20px_-10px_rgba(56,189,248,0.2)]" },
-      { name: "Next.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", colorClass: "hover:border-zinc-800/40 hover:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.2)]" },
-      { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", colorClass: "hover:border-yellow-500/40 hover:shadow-[0_8px_20px_-10px_rgba(234,179,8,0.2)]" },
-      { name: "HTML5", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", colorClass: "hover:border-orange-500/40 hover:shadow-[0_8px_20px_-10px_rgba(249,115,22,0.2)]" },
-      { name: "CSS3", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", colorClass: "hover:border-blue-500/40 hover:shadow-[0_8px_20px_-10px_rgba(59,130,246,0.2)]" },
-      { name: "Tailwind CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg", colorClass: "hover:border-teal-400/40 hover:shadow-[0_8px_20px_-10px_rgba(45,212,191,0.2)]" },
-    ]
-  },
-  {
-    title: "TOOLS",
-    skills: [
-      { name: "Git & GitHub", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", colorClass: "hover:border-neutral-900/40 hover:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.2)]" },
-      { name: "Chrome DevTools", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg", colorClass: "hover:border-purple-400/40 hover:shadow-[0_8px_20px_-10px_rgba(168,85,247,0.2)]" },
-      { name: "Figma", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg", colorClass: "hover:border-pink-500/40 hover:shadow-[0_8px_20px_-10px_rgba(236,72,153,0.2)]" },
-      { name: "Vercel", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg", colorClass: "hover:border-zinc-900/40 hover:shadow-[0_8px_20px_-10px_rgba(0,0,0,0.2)]" },
-      { name: "VS Code", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", colorClass: "hover:border-blue-500/40 hover:shadow-[0_8px_20px_-10px_rgba(59,130,246,0.2)]" },
-    ]
-  },
-  {
-    title: "ADDITIONAL",
-    skills: [
-      { name: "PHP", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg", colorClass: "hover:border-indigo-400/40 hover:shadow-[0_8px_20px_-10px_rgba(99,102,241,0.2)]" },
-      { name: "WordPress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg", colorClass: "hover:border-blue-600/40 hover:shadow-[0_8px_20px_-10px_rgba(37,99,235,0.2)]" },
-      { name: "SEO", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg", colorClass: "hover:border-green-500/40 hover:shadow-[0_8px_20px_-10px_rgba(34,197,94,0.2)]" },
-      { name: "Responsive Design", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg", colorClass: "hover:border-sky-500/40 hover:shadow-[0_8px_20px_-10px_rgba(14,165,233,0.2)]" },
-    ]
-  }
-];
+  // Inner Ring Skills (8 Unique Skills)
+  const innerSkills: SkillItem[] = [
+    {
+      name: "React.js",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    },
+    {
+      name: "Next.js",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    },
+    {
+      name: "TypeScript",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    },
+    {
+      name: "Tailwind CSS",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    },
+    {
+      name: "JavaScript",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    },
+    {
+      name: "HTML5 & CSS3",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    },
+    {
+      name: "Git & GitHub",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    },
+    {
+      name: "API Integration",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/json/json-original.svg",
+    },
+  ];
 
-export default function Skills() {
-  const floatVariants: Variants = {
-    animate: {
-      y: [0, -10, 0],
-      rotate: [0, 2, -2, 0],
-      transition: { duration: 10, repeat: Infinity, ease: "easeInOut" }
-    }
-  };
+  // Outer Ring Skills (7 Unique Skills)
+  const outerSkills: SkillItem[] = [
+    {
+      name: "Figma & Canva",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+    },
+    {
+      name: "Chrome DevTools",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg",
+    },
+    {
+      name: "Responsive Design",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/chrome/chrome-original.svg",
+    },
+    {
+      name: "SEO / AI",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+    },
+    {
+      name: "Search Console",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+    },
+    {
+      name: "Keyword Research",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+    },
+    {
+      name: "MS Excel & Word",
+      logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    },
+  ];
 
   return (
-    <section id="skills" className="bg-[#FAFAFC] py-16 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none">
+    <section className="relative w-full overflow-hidden bg-[#f7f3ec] py-20 px-6 md:px-16 font-sans text-zinc-900 select-none">
       
-      {/* Background Decor & Visible DEVELOPER Watermark */}
-      <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
-        
-        {/* DEVELOPER Watermark Text */}
-        <div className="absolute w-full flex justify-center items-center opacity-[0.12] select-none pointer-events-none">
-          <span className="font-extrabold tracking-tighter text-[14vw] sm:text-[15.5vw] uppercase font-mono leading-none text-zinc-900">
-            DEVELOPER
-          </span>
-        </div>
-        
-        {/* Floating Code Elements */}
-        <motion.div variants={floatVariants} animate="animate" className="absolute top-[15%] left-[8%] text-zinc-300/40 font-mono text-sm sm:text-lg hidden md:block">{"<code />"}</motion.div>
-        <motion.div variants={floatVariants} animate="animate" className="absolute bottom-[20%] right-[8%] text-zinc-300/40 font-mono text-sm sm:text-xl hidden lg:block">{"{ skills }"}</motion.div>
-        
-        {/* Grid pattern overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-[0.12]" />
-      </div>
+      {/* Background Soft Organic Waves Gradient */}
+      <div className="absolute inset-0 pointer-events-none opacity-40 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#eaddcf] via-[#f7f3ec] to-[#f7f3ec]" />
 
-      <div className="mx-auto max-w-6xl relative z-10 w-full">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
         
-        {/* Section Header */}
-        <div className="mb-12 sm:mb-16 flex flex-col items-start gap-2.5">
-          <div className="flex items-center gap-2">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
-            <p className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-blue-600">
-              MY SKILLS
-            </p>
+        {/* Left Column: Heading & Text */}
+        <div className="lg:col-span-5 flex flex-col items-start gap-4">
+          
+          {/* Top Pill Badge */}
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-[#ebdcd0] text-[#7a604a] text-xs font-semibold tracking-wider uppercase shadow-sm">
+            • SKILLS •
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-zinc-900">
-            Technologies I work with
+
+          {/* Title */}
+          <h2 className="text-4xl sm:text-5xl font-serif font-semibold text-zinc-900 leading-tight">
+            Tools &amp; Technologies <br /> I Work With
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-500 font-medium max-w-lg">
-            Tools and technologies I use to build modern, responsive, and scalable web applications.
+
+          {/* Subtitle */}
+          <p className="text-zinc-600 text-base sm:text-lg max-w-md font-light leading-relaxed">
+            I use modern tools, frameworks, and APIs to build fast, responsive, and engaging web applications.
           </p>
+
+          {/* Action Button */}
+          <a
+            href="#projects"
+            className="mt-4 inline-flex items-center gap-2 bg-zinc-950 text-white font-medium text-sm px-6 py-3.5 rounded-full shadow-lg hover:bg-zinc-800 transition-all duration-300"
+          >
+            Explore My Skills
+            <span className="text-base">→</span>
+          </a>
         </div>
 
-        {/* Categorized Sections */}
-        <div className="space-y-10 sm:space-y-14">
-          {skillCategories.map((category, catIndex) => (
-            <div key={catIndex} className="flex flex-col gap-4">
-              
-              {/* Category Subheading */}
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
-                  {category.title}
-                </span>
-                <div className="h-[1px] flex-1 bg-zinc-200/60 ml-2" />
-              </div>
-
-              {/* Category Skills Grid - Fully Responsive */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4 w-full">
-                {category.skills.map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 15 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-30px" }}
-                    transition={{ duration: 0.4, delay: index * 0.03, ease: "easeOut" }}
-                    // Hover movement effect
-                    whileHover={{ 
-                      y: -6, 
-                      scale: 1.03,
-                      transition: { duration: 0.2, ease: "easeInOut" } 
-                    }}
-                    whileTap={{ scale: 0.97 }}
-                    className={`group flex flex-col items-center justify-center bg-white/95 backdrop-blur-sm border border-zinc-200/80 rounded-xl p-4 shadow-sm transition-colors duration-300 cursor-pointer ${skill.colorClass}`}
-                  >
-                    {/* Logo with hover zoom */}
-                    <div className="h-8 w-8 sm:h-9 sm:w-9 flex items-center justify-center mb-2.5">
-                      <img 
-                        src={skill.logo} 
-                        alt={skill.name} 
-                        loading="lazy"
-                        className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-110" 
-                      />
-                    </div>
-                    
-                    {/* Name */}
-                    <span className="text-[11px] sm:text-xs font-semibold text-zinc-700 tracking-tight text-center truncate w-full group-hover:text-zinc-900 transition-colors">
-                      {skill.name}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-
+        {/* Right Column: Smooth Rotating Circular Orbit Layout */}
+        <div className="lg:col-span-7 flex justify-center items-center py-12 lg:py-0">
+          <div
+            className="relative w-72 h-72 sm:w-[440px] sm:h-[440px] flex items-center justify-center"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            {/* Background Orbit Circles */}
+            <div className="absolute inset-0 rounded-full border border-zinc-300/60 pointer-events-none" />
+            <div className="absolute inset-12 sm:inset-16 rounded-full border border-dashed border-zinc-300/80 pointer-events-none" />
+            
+            {/* Center Dark Badge */}
+            <div className="relative z-20 w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-zinc-950 text-white flex flex-col items-center justify-center shadow-2xl border-4 border-[#eae1d8] pointer-events-none">
+              <div className="text-amber-200 text-xl sm:text-2xl font-mono mb-1">&lt;/&gt;</div>
+              <span className="text-xs sm:text-sm tracking-wide font-medium text-zinc-300">
+                Frontend
+              </span>
             </div>
-          ))}
+
+            {/* INNER ORBIT (Clockwise Smooth Rotation) */}
+            <motion.div
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              animate={{ rotate: isHovered ? undefined : 360 }}
+              transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+            >
+              {innerSkills.map((skill, index) => {
+                const angle = (index / innerSkills.length) * 360;
+                return (
+                  <div
+                    key={index}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+                    style={{
+                      transform: `rotate(${angle}deg) translate(clamp(110px, 20vw, 135px)) rotate(-${angle}deg)`,
+                    }}
+                  >
+                    <motion.div
+                      animate={{ rotate: isHovered ? undefined : -360 }}
+                      transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+                    >
+                      <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-[0_8px_20px_-5px_rgba(0,0,0,0.08)] border border-white/60 hover:scale-105 transition-transform duration-200 cursor-pointer">
+                        <img
+                          src={skill.logo}
+                          alt={skill.name}
+                          className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
+                        />
+                        <span className="text-[11px] sm:text-xs font-semibold text-zinc-800 whitespace-nowrap">
+                          {skill.name}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </motion.div>
+
+            {/* OUTER ORBIT (Counter-Clockwise Smooth Rotation) */}
+            <motion.div
+              className="absolute inset-0 w-full h-full pointer-events-none"
+              animate={{ rotate: isHovered ? undefined : -360 }}
+              transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
+            >
+              {outerSkills.map((skill, index) => {
+                const angle = (index / outerSkills.length) * 360;
+                return (
+                  <div
+                    key={index}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+                    style={{
+                      transform: `rotate(${angle}deg) translate(clamp(150px, 30vw, 200px)) rotate(-${angle}deg)`,
+                    }}
+                  >
+                    <motion.div
+                      animate={{ rotate: isHovered ? undefined : 360 }}
+                      transition={{ repeat: Infinity, duration: 45, ease: "linear" }}
+                    >
+                      <div className="flex items-center gap-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-2xl shadow-[0_8px_20px_-5px_rgba(0,0,0,0.08)] border border-white/60 hover:scale-105 transition-transform duration-200 cursor-pointer">
+                        <img
+                          src={skill.logo}
+                          alt={skill.name}
+                          className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
+                        />
+                        <span className="text-[11px] sm:text-xs font-semibold text-zinc-800 whitespace-nowrap">
+                          {skill.name}
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </motion.div>
+
+          </div>
         </div>
 
       </div>
